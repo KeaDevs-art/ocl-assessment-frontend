@@ -54,7 +54,7 @@ export default App;
 //         <div className="location">
 //           <span>📍</span>
 //           <div className="location-text">
-//             <span className="location-name">Lagos,</span>
+//             <span className="location-name">Johannesburg,</span>
 //             <span className="location-country">Nigeria</span>
 //           </div>
 //         </div>

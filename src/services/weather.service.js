@@ -3,7 +3,7 @@ import axios from "axios";
 
 // const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const API_KEY = "30104f56334a8dfa7e2b3a663e9670bb";
-const BASE_URL = "https://api.openweathermap.org/data/2.5";
+const BASE_URL = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5";
 const lat = "-25.9975353";
 const lon = "28.1239603"
 
@@ -17,6 +17,7 @@ const WeatherService = {
           units: "metric",
         },
       });
+      
       return response.data;
     } catch (error) {
       console.error("Error fetching current weather:", error);

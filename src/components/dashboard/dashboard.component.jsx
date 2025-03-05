@@ -4,8 +4,8 @@ import { AuthContext } from "../../context/auth.context";
 import WeatherService from "../../services/weather.service";
 import "./dashboard.css";
 
-import { MapContainer, TileLayer, useMapEvents, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, useMapEvents, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 const Dashboard = () => {
   const { user, logout, addFavoriteCity, removeFavoriteCity } =
@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [currentCity, setCurrentCity] = useState("Lagos");
-  const [currentCountry, setCurrentCountry] = useState("Nigeria");
+  const [currentCity, setCurrentCity] = useState("Johannesburg");
+  const [currentCountry, setCurrentCountry] = useState("South Africa");
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -36,6 +36,8 @@ const Dashboard = () => {
 
     fetchWeatherData();
   }, [currentCity]);
+  // console.log("weather...", JSON.stringify(currentWeather, null, 2));
+  // console.log("weather...", JSON.stringify(currentWeather.name, null, 2));
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -98,6 +100,8 @@ const Dashboard = () => {
     return <div className="loading">Loading...</div>;
   }
 
+  const darkMode = false;
+
   return (
     <div className="dashboard">
       <div className="search-bar">
@@ -140,7 +144,7 @@ const Dashboard = () => {
 
         <div className="user-menu">
           <div className="user-avatar">
-            <img src="/api/placeholder/40/40" alt="User avatar" />
+            <img src="https://www.futuroprossimo.it/wp-content/uploads/2021/12/Synthesia-Avatar.jpg" alt="User avatar" />
           </div>
           <div className="user-dropdown">
             <div className="user-info">
@@ -162,13 +166,14 @@ const Dashboard = () => {
         <div className="forecast-container">
           <div className="forecast-card current-weather">
             <div className="forecast-day">
-              {new Date().toLocaleDateString("en-US", { weekday: "long" })}
+              <h5>{new Date().toLocaleDateString("en-US", { weekday: "long" })}</h5>
             </div>
             <div className="forecast-time">
-              {new Date().toLocaleTimeString("en-US", {
+              {/* {new Date().toLocaleTimeString("en-US", {
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              })} */}
+              <h2>{currentWeather.name}</h2>
             </div>
             <div className="weather-icon">
               {getWeatherIcon(currentWeather.weather[0].main)}
@@ -250,25 +255,29 @@ const Dashboard = () => {
       <div className="global-map-container">
         <h3 className="section-title">Global Map</h3>
         <div className="map-container">
-        <MapContainer
-        center={initialPosition}
-        zoom={13}
-        style={{ height: '30vh' }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={darkMode 
-            ? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-            : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          }
-        />
-        <MapEvents onLocationSelect={fetchWeatherData} />
-        <SearchControl onSearch={(location) => {
-          const [lat, lon] = location.split(',').map(Number);
-          fetchWeatherData(lat, lon);
-        }} />
-        <InitialLocationSetter onLocationFound={fetchWeatherData} />
-      </MapContainer>
+          <MapContainer
+            // center={initialPosition}
+            center={[50.5, 30.5]}
+            zoom={13}
+            style={{ height: "30vh" }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url={
+                darkMode
+                  ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  : "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+              }
+            />
+            {/* <MapEvents onLocationSelect={fetchWeatherData} />
+            <SearchControl
+              onSearch={(location) => {
+                const [lat, lon] = location.split(",").map(Number);
+                fetchWeatherData(lat, lon);
+              }}
+            />
+            <InitialLocationSetter onLocationFound={fetchWeatherData} /> */}
+          </MapContainer>
           <div className="map-marker" style={{ top: "35%", left: "25%" }}></div>
           <div className="map-marker" style={{ top: "25%", left: "75%" }}></div>
           <div className="map-marker" style={{ top: "40%", left: "48%" }}></div>
@@ -339,3 +348,50 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+/*
+weather... {
+  "coord": {
+    "lon": 28.0436,
+    "lat": -26.2023
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 20.16,
+    "feels_like": 20.03,
+    "temp_min": 20.16,
+    "temp_max": 20.16,
+    "pressure": 1017,
+    "humidity": 69,
+    "sea_level": 1017,
+    "grnd_level": 832
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 0.71,
+    "deg": 168,
+    "gust": 0.72
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1741208811,
+  "sys": {
+    "country": "ZA",
+    "sunrise": 1741147432,
+    "sunset": 1741192505
+  },
+  "timezone": 7200,
+  "id": 993800,
+  "name": "Johannesburg",
+  "cod": 200
+}
+*/
