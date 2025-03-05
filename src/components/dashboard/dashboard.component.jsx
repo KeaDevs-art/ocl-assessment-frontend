@@ -4,6 +4,9 @@ import { AuthContext } from "../../context/auth.context";
 import WeatherService from "../../services/weather.service";
 import "./dashboard.css";
 
+import { MapContainer, TileLayer, useMapEvents, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
 const Dashboard = () => {
   const { user, logout, addFavoriteCity, removeFavoriteCity } =
     useContext(AuthContext);
@@ -247,11 +250,25 @@ const Dashboard = () => {
       <div className="global-map-container">
         <h3 className="section-title">Global Map</h3>
         <div className="map-container">
-          <img
-            src="/api/placeholder/800/200"
-            alt="World map"
-            className="map-image"
-          />
+        <MapContainer
+        center={initialPosition}
+        zoom={13}
+        style={{ height: '30vh' }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={darkMode 
+            ? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          }
+        />
+        <MapEvents onLocationSelect={fetchWeatherData} />
+        <SearchControl onSearch={(location) => {
+          const [lat, lon] = location.split(',').map(Number);
+          fetchWeatherData(lat, lon);
+        }} />
+        <InitialLocationSetter onLocationFound={fetchWeatherData} />
+      </MapContainer>
           <div className="map-marker" style={{ top: "35%", left: "25%" }}></div>
           <div className="map-marker" style={{ top: "25%", left: "75%" }}></div>
           <div className="map-marker" style={{ top: "40%", left: "48%" }}></div>

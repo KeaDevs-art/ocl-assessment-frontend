@@ -27,7 +27,9 @@ export const AuthProvider = ({ children }) => {
         setAuthToken(localStorage.token);
 
         try {
-          const res = await axios.get("http://localhost:4500/api/users/me");
+          const res = await axios.get(
+            "https://ocl-assessment-backend-1.onrender.com/api/users/me"
+          );
 
           dispatch({
             type: "USER_LOADED",
@@ -54,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/api/users/register",
+        "https://ocl-assessment-backend-1.onrender.com/api/users/register",
         formData,
         config
       );
@@ -83,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/api/users/login",
+        "https://ocl-assessment-backend-1.onrender.com/api/users/login",
         formData,
         config
       );
@@ -95,6 +97,7 @@ export const AuthProvider = ({ children }) => {
 
       loadUser();
     } catch (err) {
+      console.log("err", err)
       dispatch({
         type: "LOGIN_FAIL",
         payload: err.response.data.message,
@@ -115,7 +118,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/api/users/favorites",
+        "https://ocl-assessment-backend-1.onrender.com/api/users/favorites",
         { city },
         config
       );
