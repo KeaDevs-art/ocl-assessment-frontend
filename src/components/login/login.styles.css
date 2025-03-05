@@ -1,0 +1,85 @@
+/* components/auth/Auth.css */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+  padding: 20px;
+}
+
+.auth-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  width: 100%;
+  max-width: 450px;
+  color: var(--text-color);
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--active-card-bg);
+}
+
+.auth-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--active-card-bg);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-button:hover {
+  background-color: #5bc5e3;
+}
+
+.auth-redirect {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--secondary-text);
+}
+
+.auth-redirect a {
+  color: var(--active-card-bg);
+  text-decoration: none;
+}
+
+.auth-error {
+  background-color: rgba(255, 99, 71, 0.2);
+  color: tomato;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}

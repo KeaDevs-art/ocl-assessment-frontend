@@ -1,0 +1,142 @@
+/* components/dashboard/Dashboard.css */
+.dashboard {
+    background-color: var(--primary-bg);
+    min-height: 100vh;
+    color: var(--text-color);
+    padding: 20px;
+  }
+  
+  .favorites-container {
+    margin-top: 30px;
+  }
+  
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .city-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .city-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .city-select, .city-remove {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .city-select {
+    background-color: var(--active-card-bg);
+    color: #000;
+  }
+  
+  .city-remove {
+    background-color: rgba(255, 99, 71, 0.2);
+    color: tomato;
+  }
+  
+  .favorite-button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--active-card-bg);
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-radius: 0 0 8px 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .search-result-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .search-result-item:hover {
+    background-color: rgba(120, 217, 241, 0.1);
+  }
+  
+  .user-menu {
+    position: relative;
+  }
+  
+  .user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    width: 250px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none;
+  }
+  
+  .user-menu:hover .user-dropdown {
+    display: block;
+  }
+  
+  .user-info {
+    margin-bottom: 15px;
+  }
+  
+  .user-info p {
+    margin: 0;
+  }
+  
+  .user-email {
+    color: var(--secondary-text);
+    font-size: 0.9em;
+  }
+  
+  .logout-button {
+    width: 100%;
+    padding: 10px;
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-size: 1.5em;
+  }
+  
+  .no-favorites {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--secondary-text);
+    padding: 20px;
+  }
